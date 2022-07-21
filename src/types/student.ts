@@ -1,5 +1,9 @@
 export interface StudentCSVProps {
-  name: string;
+  name?: string;
+  first_name?: string;
+  last_name?: string;
+  first_name_phonetic?: string;
+  last_name_phonetic?: string;
   email: string;
   enrollment_status: number;
   grade: number;

@@ -1,5 +1,4 @@
 import {
-  Grid,
   Checkbox,
   Input,
   Text,
@@ -12,6 +11,7 @@ import { useForm, Controller } from "react-hook-form";
 
 export interface FormConfigGenerationFormProps {
   numberRows: string;
+  hasPhoneticName: boolean;
   hasNumberPhone: boolean;
   hasBirthday: boolean;
   hasLocations: boolean;
@@ -62,6 +62,20 @@ export default function FormConfigGeneration({
                   helperText={error?.message}
                   type="number"
                 />
+              );
+            }}
+          />
+
+          <Controller
+            control={control}
+            name="hasPhoneticName"
+            render={({ field: { onChange } }) => {
+              return (
+                <Checkbox onChange={onChange} css={{ marginBottom: 8 }}>
+                  <Text>
+                    Generation with first name, last name, first name phonetic, last name phonetic field
+                  </Text>
+                </Checkbox>
               );
             }}
           />

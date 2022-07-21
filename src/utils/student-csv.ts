@@ -15,6 +15,17 @@ export const randomNumber = (from: number, to: number): number => {
 export const getId = () => {
   return new Date().getTime();
 };
+
+export function randomString(length: number = 10) {
+  let result = '';
+  for (let i = 0; i < length; i++) {
+      let rand = Math.floor(Math.random() * 62);
+      const charCode = (rand += rand > 9 ? (rand < 36 ? 55 : 61) : 48);
+      result += String.fromCharCode(charCode);
+  }
+  return result;
+}
+
 export function delay(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -43,6 +54,7 @@ export const getRandomPhoneNumber = async () => {
 };
 
 export const generationStudent = async ({
+  hasPhoneticName,
   hasBirthday,
   hasLocations,
   hasNumberPhone,
@@ -53,7 +65,12 @@ export const generationStudent = async ({
 
   const id = getId();
 
-  const user = `student-csv-${ulid(id)}`;
+  const lastName = `student-csv-${ulid(id)}`;
+  const firstName = `${randomString()}@gmail.com`;
+  const name = `${lastName} ${firstName}`;
+  const email = `${lastName}.${firstName}`;
+  const firstNamePhonetic = `first-${randomString()}`;
+  const lastNamePhonetic = `last-${randomString()}`;
 
   const date = new Date();
   date.setFullYear(date.getFullYear() - randomNumber(1, 60));
@@ -70,9 +87,18 @@ export const generationStudent = async ({
     }
   }
 
+  const _student = hasPhoneticName ? {
+    first_name: firstName,
+    last_name: lastName,
+    first_name_phonetic: firstNamePhonetic,
+    last_name_phonetic: lastNamePhonetic,
+  }: {
+    name,
+  };
+
   const student: StudentCSVProps = {
-    name: `${user}`,
-    email: `${user}@gmail.com`,
+    ..._student,
+    email,
     enrollment_status: randomNumber(1, 5),
     grade: randomNumber(0, 16),
     phone_number: phoneNumber,

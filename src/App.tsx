@@ -36,6 +36,10 @@ function App() {
       >
         <Table.Header>
           <Table.Column align="center">NAME</Table.Column>
+          <Table.Column align="center">FIRST NAME</Table.Column>
+          <Table.Column align="center">LAST NAME</Table.Column>
+          <Table.Column align="center">FIRST NAME PHONETIC</Table.Column>
+          <Table.Column align="center">LAST NAME PHONETIC</Table.Column>
           <Table.Column align="center">EMAIL</Table.Column>
           <Table.Column align="center">ENROLLMENT STATUS</Table.Column>
           <Table.Column align="center">GRADE</Table.Column>
@@ -50,6 +54,18 @@ function App() {
               <Table.Row key={i}>
                 <Table.Cell css={{ textAlign: "center" }}>
                   {student.name}
+                </Table.Cell>
+                <Table.Cell css={{ textAlign: "center" }}>
+                  {student.first_name}
+                </Table.Cell>
+                <Table.Cell css={{ textAlign: "center" }}>
+                  {student.last_name}
+                </Table.Cell>
+                <Table.Cell css={{ textAlign: "center" }}>
+                  {student.first_name_phonetic}
+                </Table.Cell>
+                <Table.Cell css={{ textAlign: "center" }}>
+                  {student.last_name_phonetic}
                 </Table.Cell>
                 <Table.Cell css={{ textAlign: "center" }}>
                   {student.email}
